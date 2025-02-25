@@ -1,0 +1,53 @@
+How to do SDWAN Configuration on Cisco Router 
+
+---------New Router configuration with IOS---------------
+#dir usb0:             //check needed IOS version on drive
+#copy path of .bin file
+#verify /md5 bootflash : IOS version
+#write
+#relod                                                           //follow following commands 
+
+--------- Delete bootflash IOS -----------------------------     //if there is already an IOS which you don't need then only follow this delete path 
+#sh flash:
+#sh version#dir bootflash:                   
+
+//to check ios file
+router#delete bootflash: .bin file
+
+//delete flash in RAM and bootflash is ROM and we delete file from bootflash
+
+---------IOS upgrade--------------------------------------
+#dir usb0             //select file name
+#copy usb0 : bootflash : File name
+#verify /md5 bootflash : File name
+#config t
+#no boot system
+#boot system flash bootflash: Filename
+
+Remove the IOS:
+dir bootflash:
+delete filename
+config-transaction
+add sdwan minimum config
+
+#commit
+#reload
+
+----------------  Commands for changing sdwan config in router -----------------------
+#request platform software sdwan config reset
+#controller-mode enable
+username-admin                // default username and password for cisco router on 1st time login
+password-admin
+#pnpa service discovery stop
+#config-transaction
+
+
+---------------- Commands to monitor cisco router and switch --------------------------
+#sh mac address-table
+#sh mac address-table address macaddress here
+#sh int status
+#sh int br
+#sh running-config
+#sh sdwan running-config
+#sh run
+
