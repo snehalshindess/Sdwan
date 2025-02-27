@@ -9,7 +9,8 @@ How to do SDWAN Configuration on Cisco Router
 
 --------- Delete bootflash IOS -----------------------------     //if there is already an IOS which you don't need then only follow this delete path 
 #sh flash:
-#sh version#dir bootflash:                   
+#sh version
+#dir bootflash:                   
 
 //to check ios file
 router#delete bootflash: .bin file
